@@ -1,2 +1,6 @@
 # **/*.csv
 # NPL_Sentiment_Analysis/data/
+
+venv/
+*.csv
+*.joblib
