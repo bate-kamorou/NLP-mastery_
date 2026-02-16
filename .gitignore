@@ -1,1 +1,2 @@
-*.csv
+**/*.csv
+NPL_Sentiment_Analysis/data/
