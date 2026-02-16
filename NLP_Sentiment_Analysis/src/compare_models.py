@@ -8,10 +8,10 @@ import matplotlib.pyplot as plt
 
 
 # load training and testing data
-X_train = pd.read_csv("NLP_Sentiment_Analysis/data/processed/X_train_5000.csv")
-X_test = pd.read_csv("NLP_Sentiment_Analysis/data/processed/X_test_5000.csv")
-y_train = pd.read_csv("NLP_Sentiment_Analysis/data/processed/y_train_5000.csv")
-y_test = pd.read_csv("NLP_Sentiment_Analysis/data/processed/y_test_5000.csv")
+X_train = pd.read_csv("NLP_Sentiment_Analysis/data/processed/X_train_50_000.csv")
+X_test = pd.read_csv("NLP_Sentiment_Analysis/data/processed/X_test_50_000.csv")
+y_train = pd.read_csv("NLP_Sentiment_Analysis/data/processed/y_train_50_000.csv")
+y_test = pd.read_csv("NLP_Sentiment_Analysis/data/processed/y_test_50_000.csv")
 
 # flatten the labels y 
 y_test =  np.ravel(y_test)
@@ -42,7 +42,7 @@ print("linear model's confusion matrix \n" , conf_mat)
 
 if model_acc > .84 :
     # save the linear model
-    joblib.dump(linear_model,"NPL_Sentiment_Analysis/models/linear_model.joblib")
+    joblib.dump(linear_model,"NLP_Sentiment_Analysis/models/50_000_linear_model.joblib")
     print("new champion saved")
 else :
     print("the naive bayes model is best ")

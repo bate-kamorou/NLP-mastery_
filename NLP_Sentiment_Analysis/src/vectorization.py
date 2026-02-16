@@ -20,7 +20,7 @@ y = df["sentiment"].apply(lambda x : 1 if x == "positive" else 0 ).to_numpy()
 # print(f"First 10 numbers in the first review is {X[0][:10]} ")
 
 # save the vectorizer to models
-joblib.dump(vectorizer, "NLP_Sentiment_Analysis/models/tfidf_5000_vectorizer.joblib")
+joblib.dump(vectorizer, "NLP_Sentiment_Analysis/models/tfidf_50_000_vectorizer.joblib")
 
 # split in to training and test sets
 X_train_50_000, X_test_50_000, y_train_50_000, y_test_50_000 = train_test_split(X, y, test_size=0.2, random_state=43)
