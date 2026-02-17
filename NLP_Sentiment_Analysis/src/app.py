@@ -1,8 +1,6 @@
 import streamlit as st
 
-import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).resolve().parent.parent / "src"))
 
 from  text_processor import TextCleaner
 import joblib
@@ -16,7 +14,7 @@ st.set_page_config(page_title="IMDB AI Sentiment Analysis", page_icon="🎦")
 st.title(" 🎬 AI Movies Review Sentiment Analysis", text_alignment="center")
 
 
-input_text  = st.text_area(label="## write you impression here", placeholder="The cinematography was brilliant, but the plot was lacking...")
+input_text  = st.text_area(label="**write you impression here**", placeholder="The cinematography was brilliant, but the plot was lacking...")
 
 # instantiate the TextCleaner class
 test_cleaner = TextCleaner()
@@ -50,10 +48,10 @@ if st.button(label="Analyze review sentiment", type="primary" , shortcut="Enter"
             st.divider()
 
             if prediction  == 1 :
-                success_message =   st.success(f"###   POSITIVE :  with a score of {predict_proba[0][1]:.2f}%")
+                success_message =   st.success(f"### POSITIVE:  with a score of {predict_proba[0][1]:.2f}%")
                 st.balloons()
             else:
-                failure_message =  st.error(f"### NEGATIVE :  with a score of {predict_proba[0][0]:.2f}%")
+                failure_message =  st.error(f"### NEGATIVE:  with a score of {predict_proba[0][0]:.2f}%")
                 
             st.subheader("💡key influencers")
             st.write("model focused on these words:")
