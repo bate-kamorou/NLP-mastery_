@@ -14,7 +14,7 @@ st.set_page_config(page_title="IMDB AI Sentiment Analysis", page_icon="🎦")
 st.title(" 🎬 AI Movies Review Sentiment Analysis", text_alignment="center")
 
 
-input_text  = st.text_area(label="## write you impression here", placeholder="The cinematography was brilliant, but the plot was lacking...")
+input_text  = st.text_area(label="**write you impression here**", placeholder="The cinematography was brilliant, but the plot was lacking...")
 
 # instantiate the TextCleaner class
 test_cleaner = TextCleaner()
