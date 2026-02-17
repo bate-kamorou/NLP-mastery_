@@ -1,50 +1,72 @@
-# IMDB Movie Reviews Sentiment Analysis
+# 🎬 IMDb Movie Review Sentiment AI
 
-## This project focuses on performing sentiment analysis on movie reviews from the IMDB dataset. The goal is to classify reviews as positive or negative based on their content
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.0+-orange.svg)](https://scikit-learn.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Live-red.svg)](https://movies-review-sentiment-analysis-1.streamlit.app/)
+[![Accuracy](https://img.shields.io/badge/Accuracy-88.94%25-green.svg)]
 
-## Dataset
+An end-to-end NLP solution that classifies movie reviews into **Positive** or **Negative** sentiments with high precision. Trained on 50,000 reviews and deployed as a live web application.
 
-The dataset used in this project is the IMDB Movie Reviews dataset, which contains 50,000 movie reviews labeled as positive or negative. The dataset is split into 40,000 reviews for training and 10,000 reviews for testing.
+🚀 **Live App:** [View Sentiment AI Dashboard](https://movies-review-sentiment-analysis-1.streamlit.app/)
 
-## Methodology
+---
 
-1. **Data Preprocessing**: The reviews were cleaned by removing HTML tags, punctuation, and stop words. The text was then vectorized into sequences of integers using a vectorizer
-2. **Models traned**: A liner regression model and a Naive Bayes model was trained on the vectorized data to classify the reviews as positive or negative then the best model was selected based on the evaluation metrics
-3. **Evaluation**: The model's performance was evaluated using accuracy, precision, recall, and F1-score,metrics
-4. **application**: A streamlit application was developed to allow users to input their own movie reviews and receive a sentiment classification and the features that lead to model make the prediction.
+## 🛠️ Project Architecture
 
-## Results
+This project evolved from a baseline Naive Bayes model (84%) to a production-ready Logistic Regression pipeline, achieving a final accuracy of **88.94%**.
 
-The model achieved an accuracy of ![Accuracy](https://img.shields.io/badge/Accuracy-88.94%25-green) on the test set, indicating that it is effective in classifying movie reviews based on their sentiment. The precision, recall, and F1-score also showed that the model performs well in distinguishing between positive and negative reviews
+### 1. Data Processing Layer
 
-## Conclusion
+To handle the "noise" inherent in web-scraped IMDb reviews, a custom `TextCleaner` class was developed:
 
-The sentiment analysis model developed in this project demonstrates a strong ability to classify movie reviews as positive or negative. This can be useful for various applications, such as analyzing customer feedback, monitoring social media sentiment, and improving recommendation systems. Future work could involve exploring more advanced models, such as deep learning techniques, to further enhance the performance of the sentiment analysis.
+* **HTML Stripping**: Used `BeautifulSoup` to remove residual tags.
+* **Normalization**: Implemented Lemmatization via NLTK's `WordNetLemmatizer` to reduce words to their linguistic roots.
+* **Noise Reduction**: Leveraged Regex to eliminate non-alphabetic characters.
 
-## setup
+### 2. Feature Engineering
 
-To set up the environment for this project, follow these steps:
+Instead of simple word counts, the model utilizes **TF-IDF (Term Frequency-Inverse Document Frequency)**:
 
-1. Clone the repository:
+* **Bigram Integration**: By setting $ngram\_range=(1, 2)$, the model captures context (e.g., "not good" or "fall asleep"), which was critical for passing complex sarcasm tests.
+* **Dimensionality**: Optimized at 5,000 max features to balance model complexity with performance.
+
+### 3. Model Development
+
+* **The Pipeline**: Integrated the vectorizer and classifier into a Scikit-Learn `Pipeline`. This ensures that the same transformations applied to training data are perfectly replicated during real-time inference.
+* **Optimization**: Used `tempfile.mkdtemp` for memory caching during training to handle the 50,000-review dataset efficiently on limited hardware.
+
+### 4. Evaluation
+
+Achieved an impressive [![Accuracy](https://img.shields.io/badge/Accuracy-88.94%25-green.svg)] on the test set, with a precision of 0.89 and recall of 0.88, demonstrating a well-balanced model.
+
+### 5. Deployment & DevOps
+
+* **Web Framework**: Streamlit for the interactive UI.
+* **Model Versioning**: Git LFS (Large File Storage) was utilized to track and push the trained `.joblib` model artifacts (>100MB) to GitHub safely.
+* **Cloud Hosting**: Deployed on Streamlit Cloud with a modular dependency structure.
+
+---
+
+## 🚀 How to Run Locally
+
+1. **Clone the repo:**
 
    ```bash
-   git clone 
+   git clone [ https://github.com/bate-kamorou/NLP-mastery_.git]( https://github.com/bate-kamorou/NLP-mastery_.git)
+    cd IMDb-Sentiment-Analysis-Pipeline
     ```
 
-2. Navigate to the project directory:
+2. **Install dependencies:**
 
-    ```bash
-    cd NLP-Sentiment-Analysis
-    ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-3. Install the required dependencies:
+3. **Lunch the Streamlit app:**
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   streamlit run app.py
+   ```
 
-4. Run the main script to train and evaluate the model:
-
-    ```bash
-    python app.py
-    ```
+4. **Access the app:**  
+   Open [http://localhost:8501](http://localhost:8501) in your browser
