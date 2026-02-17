@@ -9,8 +9,8 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 # Dowmload necessary NLTK tools
-# nltk.download("stopwords")
-# nltk.download("wordnet")
+nltk.download("stopwords")
+nltk.download("wordnet")
 
 class TextCleaner():
     """
