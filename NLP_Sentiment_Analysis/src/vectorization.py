@@ -10,7 +10,6 @@ df = pd.read_csv("NLP_Sentiment_Analysis/data/processed/50000-cleaned-reviews.cs
 vectorizer = TfidfVectorizer(max_features=2500)
 
 # vectorize the cleaned reviews 
-
 X =  vectorizer.fit_transform(df["cleaned_review"]).toarray() # type: ignore 
 
 # one hot encode the sentiment column
